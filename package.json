@@ -2,7 +2,7 @@
   "name": "my-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anastassiyas.github.io/",
+  "homepage": "https://anastassiyas.github.io/Portfolio-Anastassiya/",
   "dependencies": {
     "@craco/craco": "^5.9.0",
     "@heroicons/react": "^1.0.1",
