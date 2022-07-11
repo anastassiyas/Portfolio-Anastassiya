@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Contact() {
-  
+  const Contact = () => {
+    const [status, setStatus] = useState("Submit");
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setStatus("Sending...");
+      const { name, email, message } = e.target.elements;
+      let details = {
+        name: name.value,
+        email: email.value,
+        message: message.value,
+      };
+      let response = await fetch("http://localhost:5000/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(details),
+      });
+      setStatus("Submit");
+      let result = await response.json();
+      alert(result.status);
+    };
+
   return (
+    
     <section id="contact" className="relative">
       <div className="container px-5 py-20 mx-auto flex sm:flex-nowrap flex-wrap">
         <div className="lg:w-2/3 md:w-1/2 bg-blue-700 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
@@ -41,15 +64,15 @@ export default function Contact() {
             </div>
           </div>
         </div>
-
+      
         <form
-          netlify
+         
           name="contact"
           className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
           <h2 className="text-green-500 sm:text-4xl text-3xl mb-1 font-medium title-font">
             Hire Me
           </h2>
-        
+          <form onSubmit={handleSubmit}>
           <div className="relative mb-4">
             <label htmlFor="name" className="leading-7 text-sm text-blue-600">
               Name
@@ -90,10 +113,13 @@ export default function Contact() {
           <button
             type="submit"
             className="text-gray-200 font-bold bg-gradient-to-br from-green-500 to-blue-500 hover:from-green-400 hover:to-blue-400 border-0 py-2 px-6 focus:outline-none  rounded text-lg">
-            Submit
+            Submit {status}
           </button>
+        </form>
         </form>
       </div>
     </section>
-  );
+     );
+    };
+  
 }
