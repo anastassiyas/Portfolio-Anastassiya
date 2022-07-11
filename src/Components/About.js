@@ -19,8 +19,8 @@ function About() {
           
           <p className="font-mono mb-8 leading-relaxed">
           I have knowledge and experience in designing, developing and<br />
-          implementing applications and solutions using various technologies and programming languages.<br />
-          I strive to use my development experience and apply hands-on technical expertise in a  role as a Full-stack Developer.
+          implementing applications and solutions using various technologies<br /> and programming languages.<br />
+          I strive to use my development experience and apply hands-on technical<br /> expertise in a  role as a Full-stack Developer.
           <br />
           <br />
           </p>
