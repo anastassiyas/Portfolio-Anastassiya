@@ -32,7 +32,7 @@ function About() {
               Recent Works
             </a>
             <a
-              href="./resume.png" target="_blank" rel="noreferrer"
+              href="./resume.pdf" target="_blank" rel="noreferrer"
               className="ml-4 inline-flex text-gray-200 bg-gradient-to-br from-green-500 to-red-500 hover:from-green-400 hover:to-blue-400 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 hover:text-gray-200 rounded text-lg"> 
            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download"
         class="w-3 mr-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
