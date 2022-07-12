@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
 export default function Contact() {
+  
   const Contact = () => {
+     
     const [status, setStatus] = useState("Submit");
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -24,8 +26,10 @@ export default function Contact() {
       alert(result.status);
     };
 
-  return (
-    
+   
+
+  return  (
+  render (
     <section id="contact" className="relative">
       <div className="container px-5 py-20 mx-auto flex sm:flex-nowrap flex-wrap">
         <div className="lg:w-2/3 md:w-1/2 bg-blue-700 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
@@ -119,7 +123,7 @@ export default function Contact() {
         </form>
       </div>
     </section>
-     );
+   ) );
     };
-  
+   
 }
