@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 export default function Contact() {
-  // const Contact = () => {
-    const [status, setStatus] = useState("Submit");
-    const handleSubmit = async (e) => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');  
+  const [status, setStatus] = useState("Submit");
+    const submitRequest = async (e) => {
       e.preventDefault();
       setStatus("Sending...");
       const { name, email, message } = e.target.elements;
@@ -13,10 +14,10 @@ export default function Contact() {
         message: message.value,
       };
       
-      let response = await fetch("http://localhost:5000/contact", {
+      let response = await fetch("/contact", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json;charset=utf-8",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(details),
       });
@@ -66,13 +67,13 @@ export default function Contact() {
           </div>
 
           <div
-            name="contact"
+            name="contact" method="POST" action="send"
             className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0"
           >
             <h2 className="text-green-500 sm:text-4xl text-3xl mb-1 font-medium title-font">
               Hire Me
             </h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submitRequest} method="POST" action="send">
               <div className="relative mb-4">
                 <label
                   htmlFor="name"
@@ -96,12 +97,15 @@ export default function Contact() {
                   Email
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   id="email"
                   name="email"
                   placeholder="myaddress@example.com"
                   className="w-full bg-blue-700 rounded border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-900 text-base outline-none text-gray-200 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                />
+                  onChange={e => setEmail(e.target.value)}
+                  value={email}
+                  required
+               />
               </div>
               <div className="relative mb-4">
                 <label
@@ -113,9 +117,12 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Enter your message"
+                  placeholder="Type a message..."
                   className="w-full bg-blue-700 rounded border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                />
+                  onChange={e => setMessage(e.target.value)}
+                  value={message}
+                  required
+                ></textarea>
               </div>
               <button
                 type="submit"
@@ -129,4 +136,3 @@ export default function Contact() {
       </section>
     );
   };
-// }
