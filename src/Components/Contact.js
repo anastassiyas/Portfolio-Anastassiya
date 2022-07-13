@@ -1,30 +1,42 @@
 import React, { useState } from "react";
 
-export default function Contact() {
+const Contact = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');  
-  const [status, setStatus] = useState("Submit");
+  // const [status, setStatus] = useState("Submit");
+
     const submitRequest = async (e) => {
       e.preventDefault();
-      setStatus("Sending...");
-      const { name, email, message } = e.target.elements;
-      let details = {
-        name: name.value,
-        email: email.value,
-        message: message.value,
-      };
-      
-      let response = await fetch("/contact", {
+      console.log({  email, message });
+      // setStatus("Sending...");
+      const response = await fetch("http://localhost:5000/send", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(details),
+        body: JSON.stringify({ email, message})
       });
-      setStatus("Submit");
-      let result = await response.json();
-      alert(result.status);
+
+      const resData = await response.json(); 
+      if (resData.status === 'success'){
+        alert("Message Sent"); 
+        this.resetForm()
+    }else if(resData.status === 'fail'){
+        alert("Message failed to send")
+    }
     };
+      // const { name, email, message } = e.target.elements;
+      // let details = {
+      //   name: name.value,
+      //   email: email.value,
+      //   message: message.value,
+      // };
+     
+     
+    //   setStatus("Submit");
+    //   let result = await response.json();
+    //   alert(result.status);
+    // };
 
     return (
       <section id="contact" className="relative">
@@ -128,7 +140,7 @@ export default function Contact() {
                 type="submit"
                 className="text-gray-200 font-bold bg-gradient-to-br from-green-500 to-blue-500 hover:from-green-400 hover:to-blue-400 border-0 py-2 px-6 focus:outline-none  rounded text-lg"
               >
-                {status}
+                Submit
               </button>
             </form>
           </div>
@@ -136,3 +148,4 @@ export default function Contact() {
       </section>
     );
   };
+  export default Contact;
