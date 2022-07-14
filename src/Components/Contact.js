@@ -1,42 +1,31 @@
 import React, { useState } from "react";
 
-const Contact = () => {
+export default function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');  
-  // const [status, setStatus] = useState("Submit");
-
+  const [status, setStatus] = useState("Submit");
     const submitRequest = async (e) => {
       e.preventDefault();
-      console.log({  email, message });
-      // setStatus("Sending...");
-      const response = await fetch("http://localhost:5000/send", {
-        method: "POST",
+      setStatus("Sending...");
+       let response = await fetch("http://localhost:5000/send", {
+                method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, message})
+        body: JSON.stringify(details),
       });
-
-      const resData = await response.json(); 
-      if (resData.status === 'success'){
-        alert("Message Sent"); 
-        this.resetForm()
-    }else if(resData.status === 'fail'){
-        alert("Message failed to send")
-    }
+      const { name, email, message } = e.target.elements;
+      let details = {
+        name: name.value,
+        email: email.value,
+        message: message.value,
+      };
+     
+     
+      setStatus("Submit");
+      let result = await response.json();
+      alert(result.status);
     };
-      // const { name, email, message } = e.target.elements;
-      // let details = {
-      //   name: name.value,
-      //   email: email.value,
-      //   message: message.value,
-      // };
-     
-     
-    //   setStatus("Submit");
-    //   let result = await response.json();
-    //   alert(result.status);
-    // };
 
     return (
       <section id="contact" className="relative">
@@ -79,16 +68,16 @@ const Contact = () => {
           </div>
 
           <div
-            name="contact" method="POST" action="send"
+            name="contact" method="POST" action="/send"  id="contact"
             className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0"
           >
             <h2 className="text-green-500 sm:text-4xl text-3xl mb-1 font-medium title-font">
               Hire Me
             </h2>
-            <form onSubmit={submitRequest} method="POST" action="send">
+            <form onSubmit={submitRequest}>
               <div className="relative mb-4">
                 <label
-                  htmlFor="name"
+                 
                   className="leading-7 text-sm text-blue-600"
                 >
                   Name
@@ -140,7 +129,7 @@ const Contact = () => {
                 type="submit"
                 className="text-gray-200 font-bold bg-gradient-to-br from-green-500 to-blue-500 hover:from-green-400 hover:to-blue-400 border-0 py-2 px-6 focus:outline-none  rounded text-lg"
               >
-                Submit
+                {status}
               </button>
             </form>
           </div>
@@ -148,4 +137,3 @@ const Contact = () => {
       </section>
     );
   };
-  export default Contact;
