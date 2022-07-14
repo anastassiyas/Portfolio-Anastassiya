@@ -19,12 +19,12 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.listen(5000, () => console.log("Server Running"));
 
 const contactEmail = nodemailer.createTransport({
-  secure: false,
-  service: 'hotmail',
+  // secure: false,
+  service: 'yahoo',
       auth: {
-      user: "ana.savostina@outlook.com",
-      pass: "Nikamaxik1605!"
-      // pass: "etfb srws ptfv macn",
+      user: "ana.savostina@yahoo.com",
+     
+      pass: "etfb srws ptfv macn",
     },
     tls:{
       rejectUnauthorized:false
@@ -38,8 +38,8 @@ contactEmail.verify((error) => {
     console.log("Ready to Send");
   }
 });
-app.get("http://localhost:5000/send", (req, res) => {
-  res.render('Contact.js');
+app.get("/send", (req, res) => {
+  res.render('/send');
 });
 
 router.post("/send", (req, res) => {
@@ -48,7 +48,7 @@ router.post("/send", (req, res) => {
   const message = req.body.message; 
   const mail = {
     from: name,
-    to: "ana.savostina@outlook.com",
+    to: "ana.savostina@yahoo.com",
     subject: "Contact Form Submission",
     html: `<p>Name: ${name}</p>
            <p>Email: ${email}</p>
@@ -59,7 +59,7 @@ router.post("/send", (req, res) => {
       res.json({ status: "ERROR" });
     } else {
       res.json({ status: "Message Sent" });
-      res.render('Contact.js', {msg:'Email has been sent'});  
+      res.render('/send', {msg:'Email has been sent'});  
   };
 });
 })

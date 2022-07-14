@@ -4,7 +4,8 @@ export default function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');  
   const [status, setStatus] = useState("Submit");
-    const submitRequest = async (e) => {
+    
+  const submitRequest = async (e) => {
       e.preventDefault();
       setStatus("Sending...");
        let response = await fetch("http://localhost:5000/send", {
@@ -25,6 +26,7 @@ export default function Contact() {
       setStatus("Submit");
       let result = await response.json();
       alert(result.status);
+      
     };
 
     return (
