@@ -26,7 +26,7 @@ const contactEmail = nodemailer.createTransport({
     auth: {
       user: "ana.savostina@outlook.com",
       pass: "Nikamaxik1605!"
-      // pass: "etfb srws ptfv macn",
+      
     },
     tls:{
       rejectUnauthorized:false
@@ -69,65 +69,3 @@ router.post("/send", (req, res) => {
 });
 })
 
-// const express = require("express");
-// const path = require("path");
-// const bodyParser = require('body-parser');
-// // app.use(bodyParser.urlencoded({ extended: false }));
-// const nodemailer = require("nodemailer");
-// require("dotenv").config();
-// const router = express.Router();
-// const port = 5000;
-
-// const app = express();
-// // Static folder
-
-// // app.use(cors());
-// // app.use(bodyParser.json());
-// app.use("/v1", router);
-
-// app.get('/contact', (req, res) => {
-//   res.sendFile('/contact', {root: __dirname});
-// });
-// app.use(express.static(path.join(__dirname, 'contact')));
-// app.listen(process.env.PORT || port, '0.0.0.0', () => {
-//   console.log("Server is running");
-// });
-
-
-// const contactEmail = nodemailer.createTransport({
-//   // host: process.env.HOST,
-//   port: 465,
-//   service: 'outlook.com',
-//     auth: {
-//       user: "ana.savostina@outlook.com",
-//       pass: "Nikamaxik1605"
-//       // pass: "etfb srws ptfv macn",
-//     },
-//   });
-//   router.post("/contact-send", (req, res) => {
-//     const name = req.body.name;
-//     const email = req.body.email;
-//     const message = req.body.message; 
-    
-//     const mail = {
-//       from: name,
-//       to: "ana.savostina@outlook.com",
-//       subject: "Contact Form Submission",
-//       subject: `Message from ${name} : ${email},
-//       message: ${message}`,
-//     };
-//   contactEmail.sendMail(mail, (error) => {
-//     if (error) {
-//       console.log(error);
-    
-//     }
-//   });
-  
-//     contactEmail.sendMail(mail, (error) => {
-//       if (error) {
-//         res.json({ status: "ERROR" });
-//       } else {
-//         res.json({ status: "Message Sent" });
-//       }
-//     });
-//   });

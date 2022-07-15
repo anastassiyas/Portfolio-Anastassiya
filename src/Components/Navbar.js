@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRightIcon } from "@heroicons/react/solid";
 
-
 function Navbar() {
   return (
     <header className="bg-blue-700 md:sticky top-0 z-10">

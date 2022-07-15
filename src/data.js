@@ -94,7 +94,6 @@ export const projects = [
 
   ];
 
-
   
   export const testimonials = [
     {
@@ -132,7 +131,7 @@ export const projects = [
   export const about = [
     {
          
-      link: "./resume.pdf"
+      link: "./resume for portfolio.pdf"
     }
   ]
   
