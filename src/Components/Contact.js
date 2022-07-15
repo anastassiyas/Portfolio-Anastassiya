@@ -9,9 +9,9 @@ export default function Contact() {
       e.preventDefault();
       setStatus("Sending...");
        let response = await fetch("http://localhost:5000/send", {
-                method: "POST",
+       method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json", 
         },
         body: JSON.stringify(details),
       });
@@ -23,7 +23,7 @@ export default function Contact() {
       };
      
      
-      setStatus("Submit");
+      // setStatus("Submit");
       let result = await response.json();
       alert(result.status);
       
@@ -70,13 +70,13 @@ export default function Contact() {
           </div>
 
           <div
-            name="contact" method="POST" action="/send"  id="contact"
+            class="contact" method="POST" action="/send"  id="contact"
             className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0"
           >
             <h2 className="text-green-500 sm:text-4xl text-3xl mb-1 font-medium title-font">
               Hire Me
             </h2>
-            <form onSubmit={submitRequest}>
+            <form  method="POST" action="send" onSubmit={submitRequest}>
               <div className="relative mb-4">
                 <label
                  
@@ -100,7 +100,7 @@ export default function Contact() {
                   Email
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   name="email"
                   placeholder="myaddress@example.com"
