@@ -19,7 +19,19 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.listen(5000, () => console.log("Server Running"));
 
-
+const contactEmail = nodemailer.createTransport({
+  secure: false,
+  service: 'hotmail',
+  secure: false,
+    auth: {
+      user: "ana.savostina@outlook.com",
+      pass: "Nikamaxik1605!"
+      // pass: "etfb srws ptfv macn",
+    },
+    tls:{
+      rejectUnauthorized:false
+    }
+  });
 
 contactEmail.verify((error) => {
   if (error) {
@@ -45,19 +57,7 @@ router.post("/send", (req, res) => {
            <p>Message: ${message}</p>`,
   };
 
-  const contactEmail = nodemailer.createTransport({
-    secure: false,
-    service: 'hotmail',
-    secure: false,
-      auth: {
-        user: "ana.savostina@outlook.com",
-        pass: "Nikamaxik1605!"
-        // pass: "etfb srws ptfv macn",
-      },
-      tls:{
-        rejectUnauthorized:false
-      }
-    });
+ 
 
   contactEmail.sendMail(mail, (error) => {
     if (error) {
